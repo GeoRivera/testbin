@@ -35,8 +35,8 @@
     },
 
 
-    getElementFromXML: function (oXML, columnName, cleanGUID) {
-      getElementFromXML(oXML, columnName, cleanGUID);
+    getElementFromXML: function (columnName, cleanGUID) {
+      getElementFromXML(formXML, columnName, cleanGUID);
     }
 
 
