@@ -5,11 +5,20 @@
     window.parent.$$ = {
 
 
+        /**
+         * Says "Hello"
+         *
+         */
         hello: function () {
-            alert("Hello. It works :)");
+            alert('Hello. It works.');
         },
 
 
+        /**
+         * Check whether current [people_id] has an active enrollment in currently selected [program_providing_service]
+         *
+         * @returns - {true} if has active enrollment
+         */
         hasActiveEnrollment: function () {
             var people_id = getElementFromXML(formXML, "people_id");
             var program_providing_service_id = getFormElement("program_providing_service");
@@ -25,6 +34,11 @@
         },
 
 
+        /**
+         * Clears form field values on XML and DOM
+         *
+         * @param {any} fieldName - Form field {Name}
+         */
         blankOutField: function (fieldName) {
             try {
                 setFormElement(fieldName, "");
@@ -32,6 +46,23 @@
                 getFormElementDOM(fieldName + "_prompt").value = "";
                 getFormElementDOM(fieldName + "_desc").innerHTML = "";
             } catch (error) { }
+        },
+
+
+        /**
+         * Sets form element even when [Is Modifiable] is unchecked. [Disable Rules] are respected.
+         *
+         * @param {any} field - Form field {Name}
+         * @param {any} value - Form fiel {Value}
+         */
+        setFormElement: function (field, value) {
+            try {
+                var initModState = getNodeFromXML(formXML, field).getAttribute('is_modifiable');
+                getNodeFromXML(formXML, field).setAttribute('is_modifiable', 'true');
+                setFormElement(field, value);
+                setElementFromXML(formXML, field, value);
+                getNodeFromXML(formXML, field).setAttribute('is_modifiable', initModState);
+            } catch (error) {}
         }
 
 
