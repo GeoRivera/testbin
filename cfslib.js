@@ -17,7 +17,7 @@
         /**
          * Check whether current [people_id] has an active enrollment in currently selected [program_providing_service]
          *
-         * @returns - {true} if has active enrollment
+         * @returns {bool} - {true} if has active enrollment
          */
         hasActiveEnrollment: function () {
             var people_id = getElementFromXML(formXML, "people_id");
@@ -63,6 +63,16 @@
                 setElementFromXML(formXML, field, value);
                 getNodeFromXML(formXML, field).setAttribute('is_modifiable', initModState);
             } catch (error) {}
+        },
+
+
+        /**
+         * Gets age of [people_id] from {client_personal_view}
+         *
+         * @returns {number} - Client's Age in years
+         */
+        getClientAge: function () {
+            return getDataValue('client_personal_view ', 'people_id', getElementFromXML(formXML, 'people_id'), 'age');
         }
 
 
