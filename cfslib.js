@@ -73,6 +73,19 @@
          */
         getClientAge: function () {
             return getDataValue('client_personal_view ', 'people_id', getElementFromXML(formXML, 'people_id'), 'age');
+        },
+
+
+        validateStartBeforeEndDate: function (startDate, endDate) {
+            var startDateLabel = getFormElementDOM('caption_' + startDate).innerHTML;
+            var endDateLabel = getFormElementDOM('caption_' + endDate).innerHTML;
+
+
+            if (!isStartBeforeEndDate(getFormElement(startDate), getFormElement(endDate))) {
+                alert('Date and time of [' + startDateLabel + '] must be prior to Date and time of [' + endDateLabel + '].');
+                $$.blankOutField(startDate);
+                $$.blankOutField(endDate);
+            }
         }
 
 
