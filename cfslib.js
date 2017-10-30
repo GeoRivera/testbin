@@ -45,7 +45,6 @@
                 setElementFromXML(formXML, fieldName, '');
                 getFormElementDOM(fieldName + '_prompt').value = '';
                 getFormElementDOM(fieldName + '_desc').innerHTML = '';
-                getFormElementDOM('time_' + fieldName).value = '';
             } catch (error) { }
         },
 
@@ -78,14 +77,19 @@
 
 
         validateStartBeforeEndDate: function (startDate, endDate) {
-            var startDateLabel = getFormElementDOM('caption_' + startDate).innerHTML;
-            var endDateLabel = getFormElementDOM('caption_' + endDate).innerHTML;
+            if ((getFormElement(startDate) != '') && (getFormElement(endDate) != '')) {
+                var startDateLabel = getFormElementDOM('caption_' + startDate).innerHTML;
+                var endDateLabel = getFormElementDOM('caption_' + endDate).innerHTML;
+                var startDateTime = new Date(getElementFromXML(formXML, startDate));
+                var endDateTime = new Date(getElementFromXML(formXML, endDate));
 
-
-            if (!isStartBeforeEndDate(getFormElement(startDate), getFormElement(endDate))) {
-                alert('Date and time of [' + startDateLabel + '] must be prior to Date and time of [' + endDateLabel + '].');
-                $$.blankOutField(startDate);
-                $$.blankOutField(endDate);
+                if (endDateTime < startDateTime) {
+                    alert('Date and time of [' + startDateLabel + '] must be prior to Date and time of [' + endDateLabel + '].');
+                    $$.blankOutField(startDate);
+                    $$.blankOutField('time_' + startDate);
+                    $$.blankOutField(endDate);
+                    $$.blankOutField('time_' + endDate);
+                }
             }
         }
 
