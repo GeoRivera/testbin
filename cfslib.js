@@ -41,11 +41,11 @@
          */
         blankOutField: function (fieldName) {
             try {
-                setFormElement(fieldName, "");
-                setElementFromXML(formXML, fieldName, "");
-                getFormElementDOM(fieldName + "_prompt").value = "";
-                getFormElementDOM(fieldName + "_desc").innerHTML = "";
-                getFormElementDOM("time_" + fieldName).value = "";
+                setFormElement(fieldName, '');
+                setElementFromXML(formXML, fieldName, '');
+                getFormElementDOM(fieldName + '_prompt').value = '';
+                getFormElementDOM(fieldName + '_desc').innerHTML = '';
+                getFormElementDOM('time_' + fieldName).value = '';
             } catch (error) { }
         },
 
