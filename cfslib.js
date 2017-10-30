@@ -45,6 +45,7 @@
                 setElementFromXML(formXML, fieldName, "");
                 getFormElementDOM(fieldName + "_prompt").value = "";
                 getFormElementDOM(fieldName + "_desc").innerHTML = "";
+                getFormElementDOM("time_" + fieldName).value = "";
             } catch (error) { }
         },
 
@@ -84,9 +85,7 @@
             if (!isStartBeforeEndDate(getFormElement(startDate), getFormElement(endDate))) {
                 alert('Date and time of [' + startDateLabel + '] must be prior to Date and time of [' + endDateLabel + '].');
                 $$.blankOutField(startDate);
-                $$.blankOutField('time' + startDate);
                 $$.blankOutField(endDate);
-                $$.blankOutField('time' + endDate);
             }
         }
 
