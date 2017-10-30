@@ -84,7 +84,9 @@
             if (!isStartBeforeEndDate(getFormElement(startDate), getFormElement(endDate))) {
                 alert('Date and time of [' + startDateLabel + '] must be prior to Date and time of [' + endDateLabel + '].');
                 $$.blankOutField(startDate);
+                $$.blankOutField('time' + startDate);
                 $$.blankOutField(endDate);
+                $$.blankOutField('time' + endDate);
             }
         }
 
