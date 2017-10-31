@@ -77,11 +77,18 @@
 
 
         validateStartBeforeEndDate: function (startDate, endDate) {
+            for (i = 0; i < arguments.length; i++) {
+                $('#time_' + arguments[i]).on('change', function () {
+                    $$.validateStartBeforeEndDate(startDate, endDate);
+                });
+            }
+
             if ((getFormElement(startDate) != '') && (getFormElement(endDate) != '')) {
                 var startDateLabel = getFormElementDOM('caption_' + startDate).innerHTML;
                 var endDateLabel = getFormElementDOM('caption_' + endDate).innerHTML;
                 var startDateTime = new Date(getElementFromXML(formXML, startDate));
                 var endDateTime = new Date(getElementFromXML(formXML, endDate));
+
 
                 if (endDateTime < startDateTime) {
                     alert('Date and time of [' + startDateLabel + '] must be prior to Date and time of [' + endDateLabel + '].');
