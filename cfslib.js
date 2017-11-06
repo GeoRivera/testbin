@@ -70,7 +70,6 @@
     blankOutHTML: function (fieldName) {
       try {
         getFormElementDOM(fieldName + "_prompt").value = "";
-        getFormElementDOM("caption_" + fieldName).innerHTML = "";
         getFormElementDOM(fieldName + "_desc").innerHTML = "";
       } catch (error) { }
     },
