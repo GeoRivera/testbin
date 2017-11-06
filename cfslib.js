@@ -57,7 +57,20 @@
       try {
         setFormElement(fieldName, "");
         setElementFromXML(formXML, fieldName, "");
+        blankOutHTML(fieldName);
+      } catch (error) { }
+    },
+
+
+    /**
+    * Clears form field values on the DOM
+    *
+    * @param {any} fieldName - Form field {Name}
+    */
+    blankOutHTML: function (fieldName) {
+      try {
         getFormElementDOM(fieldName + "_prompt").value = "";
+        getFormElementDOM("caption_" + fieldName).innerHTML = "";
         getFormElementDOM(fieldName + "_desc").innerHTML = "";
       } catch (error) { }
     },
