@@ -57,7 +57,7 @@
       try {
         setFormElement(fieldName, "");
         setElementFromXML(formXML, fieldName, "");
-        blankOutHTML(fieldName);
+        $$.blankOutHTML(fieldName);
       } catch (error) { }
     },
 
